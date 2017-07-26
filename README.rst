@@ -34,9 +34,9 @@ Requirements
 Links
 -----
 
-Repository: https://github.com/codex-bot/html-slacker
+Repository: https://github.com/codex-team/html-slacker
 
-Report a bug: https://github.com/codex-bot/html-slacker/issues
+Report a bug: https://github.com/codex-team/html-slacker/issues
 
 PyPI Package: https://pypi.python.org/pypi/html-slacker
 
