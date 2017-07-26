@@ -4,7 +4,7 @@ from os.path import join, dirname
 setup(
     name='html-slacker',
     packages=find_packages(),
-    version='0.1.0',
+    version='0.1.1',
     description='Converts HTML to Slack formatted markdown',
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
     keywords='slack bot html convert markdown slackbot pythonbot slack html markdown',

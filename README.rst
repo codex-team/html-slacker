@@ -1,5 +1,5 @@
 html-slacker
-========
+============
 
 Converts HTML to Slack formatted markdown
 
@@ -34,10 +34,10 @@ Requirements
 Links
 -----
 
-Repository: https://github.com/codex-bot/html-slacker.git
+Repository: https://github.com/codex-bot/html-slacker
 
 Report a bug: https://github.com/codex-bot/html-slacker/issues
 
-PyPI Package: https://pypi.python.org/pypi/slackify
+PyPI Package: https://pypi.python.org/pypi/html-slacker
 
 CodeX Team: https://ifmo.su
