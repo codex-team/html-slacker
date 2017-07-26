@@ -34,7 +34,7 @@ Requirements
 Links
 -----
 
-Repository: https://github.com/codex-bot/html-slacker.git
+Repository: https://github.com/codex-bot/html-slacker
 
 Report a bug: https://github.com/codex-bot/html-slacker/issues
 
