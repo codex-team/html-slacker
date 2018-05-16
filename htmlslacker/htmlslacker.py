@@ -1,5 +1,9 @@
-from html.parser import HTMLParser
-from html.entities import name2codepoint
+try:
+    from html.parser import HTMLParser
+    from html.entities import name2codepoint
+except ImportError:
+    from HTMLParser import HTMLParser
+    from htmlentitydefs import name2codepoint
 
 
 class HTMLSlacker(HTMLParser):
@@ -12,7 +16,10 @@ class HTMLSlacker(HTMLParser):
     def __init__(self, html, *args, **kwargs):
 
         # call parent constructor __init__
-        super().__init__(*args, **kwargs)
+        try:
+            super().__init__(*args, **kwargs)
+        except TypeError:
+            HTMLParser.__init__(self, *args, **kwargs)
 
         # slackified string
         self.output = ''
