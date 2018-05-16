@@ -23,7 +23,7 @@ Use it.
 .. code:: python
 
     >>> HTMLSlacker('<b>Hello</b>, <i>Slack</i>!').get_output()
-    '*Hello*,_Slack_!'
+    '*Hello*, _Slack_!'
 
 Requirements
 ------------
