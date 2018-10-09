@@ -5,6 +5,8 @@ except ImportError:
     from HTMLParser import HTMLParser
     from htmlentitydefs import name2codepoint
 
+LINEBR = "::LINEBR::"
+
 
 class HTMLSlacker(HTMLParser):
 
@@ -37,7 +39,8 @@ class HTMLSlacker(HTMLParser):
         :param attrs: we need to recover attributes of anchor
         :return:
         """
-
+        if tag == 'br' or tag == 'p':
+            self.output += LINEBR
         if tag == 'b' or tag == 'strong':
             self.output += '*'
         if tag == 'i' or tag == 'em':
@@ -95,4 +98,4 @@ class HTMLSlacker(HTMLParser):
         link: https://stackoverflow.com/questions/2077897/substitute-multiple-whitespace-with-single-whitespace-in-python
         :return:
         """
-        return ' '.join(self.output.split())
+        return ' '.join(self.output.split()).replace(LINEBR, "\n")
