@@ -25,6 +25,13 @@ Use it.
     >>> HTMLSlacker('<b>Hello</b>, <i>Slack</i>!').get_output()
     '*Hello*, _Slack_!'
 
+Test it.
+
+.. code:: python
+
+    $ python setup.py test
+
+
 Requirements
 ------------
 

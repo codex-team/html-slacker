@@ -1,5 +1,9 @@
+import sys
 from setuptools import setup, find_packages
 from os.path import join, dirname
+
+needs_pytest = {'pytest', 'test', 'ptr'}.intersection(sys.argv)
+pytest_runner = ['pytest-runner'] if needs_pytest else []
 
 setup(
     name='html-slacker',
@@ -19,5 +23,7 @@ setup(
         'Topic :: Software Development :: Libraries',
         'Environment :: Console',
     ],
+    setup_requires=pytest_runner,
+    tests_require=["pytest"],
     python_requires='>=2.5'
 )
