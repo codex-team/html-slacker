@@ -22,12 +22,13 @@ class HTMLSlacker(HTMLParser):
             super().__init__(*args, **kwargs)
         except TypeError:
             HTMLParser.__init__(self, *args, **kwargs)
+        self.skip = False
 
         # slackified string
         self.output = ''
 
         # send to HTMLParser feed function to parse HTML string
-        self.feed(html)
+        self.feed(html.decode('utf-8'))
 
     def handle_starttag(self, tag, attrs):
         """
@@ -51,6 +52,8 @@ class HTMLSlacker(HTMLParser):
             self.output += '<'
             for attr in attrs:
                 self.output += attr[1] + '|'
+        if tag == 'style' or tag == 'script':
+            self.skip = True
 
     def handle_endtag(self, tag):
         """
@@ -66,6 +69,8 @@ class HTMLSlacker(HTMLParser):
             self.output += '>'
         if tag == 'code':
             self.output += '`'
+        if tag == 'style' or tag == 'script':
+            self.skip = False
 
     def handle_data(self, data):
         """
@@ -73,7 +78,8 @@ class HTMLSlacker(HTMLParser):
         :param data:
         :return:
         """
-        self.output += data
+        if not self.skip:
+            self.output += data
 
     def handle_comment(self, data):
         pass
