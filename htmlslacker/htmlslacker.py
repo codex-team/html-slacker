@@ -28,7 +28,7 @@ class HTMLSlacker(HTMLParser):
         self.output = ''
 
         # send to HTMLParser feed function to parse HTML string
-        self.feed(html.decode('utf-8'))
+        self.feed(html)
 
     def handle_starttag(self, tag, attrs):
         """
