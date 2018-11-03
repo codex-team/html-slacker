@@ -28,3 +28,10 @@ def test_script_not_rendered():
     expected = "Dear Prudence"
     output = HTMLSlacker(html).get_output()
     assert(output == expected)
+
+
+def test_link_with_target():
+    html = 'Please click <a href="http://xxx.com/t.html" target="_blank">here</a>'
+    expected = "Please click <http://xxx.com/t.html|here>"
+    output = HTMLSlacker(html).get_output()
+    assert(output == expected)

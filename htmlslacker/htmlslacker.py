@@ -51,7 +51,8 @@ class HTMLSlacker(HTMLParser):
         if tag == 'a':
             self.output += '<'
             for attr in attrs:
-                self.output += attr[1] + '|'
+                if attr[0] == 'href':
+                    self.output += attr[1] + '|'
         if tag == 'style' or tag == 'script':
             self.skip = True
 
