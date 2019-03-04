@@ -8,7 +8,7 @@ pytest_runner = ['pytest-runner'] if needs_pytest else []
 setup(
     name='html-slacker',
     packages=find_packages(),
-    version='0.1.5',
+    version='0.1.6',
     description='Converts HTML to Slack formatted markdown',
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
     keywords='slack bot html convert markdown slackbot pythonbot slack html markdown',
