@@ -58,12 +58,13 @@ class HTMLSlacker(HTMLParser):
         if tag == 'style' or tag == 'script':
             self.skip = True
         if tag == 'ol':
-            self.ol_counter_cache = 1
+            self.ol_counter_cache = 0
         if tag == 'li':
             if self.ol_counter_cache is not None:
-                self.output += "%s." % self.ol_counter_cache
+                self.ol_counter_cache += 1
+                self.output += "{}. ".format(self.ol_counter_cache)
             else:
-                self.output += '-'
+                self.output += '- '
 
     def handle_endtag(self, tag):
         """
@@ -83,6 +84,8 @@ class HTMLSlacker(HTMLParser):
             self.skip = False
         if tag == 'ol':
             self.ol_counter_cache = None
+        if tag == 'li':
+            self.output += '\n'
 
     def handle_data(self, data):
         """

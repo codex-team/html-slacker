@@ -37,9 +37,13 @@ def test_link_with_target():
     assert(output == expected)
 
 def test_unordered_list():
-    html = '<ul><li>Hello</li></ul>'
-    expected = "- Hello"
+    html = '<ul><li>Hello</li><li>Goodbye</li></ul>'
+    expected = "- Hello \n - Goodbye"
+    output = HTMLSlacker(html).get_output()
+    assert(output == expected)
 
 def test_ordered_list():
     html = '<ol><li>one</li><li>two</li></ol>'
     expected = "1. one \n 2. two"
+    output = HTMLSlacker(html).get_output()
+    assert(output == expected)
