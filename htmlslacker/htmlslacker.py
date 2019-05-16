@@ -65,6 +65,8 @@ class HTMLSlacker(HTMLParser):
                 self.output += "{}. ".format(self.ol_counter_cache)
             else:
                 self.output += '- '
+        if tag == 'pre':
+            self.output += "```{}".format(LINEBR)
 
     def handle_endtag(self, tag):
         """
@@ -85,7 +87,9 @@ class HTMLSlacker(HTMLParser):
         if tag == 'ol':
             self.ol_counter_cache = None
         if tag == 'li':
-            self.output += '\n'
+            self.output += LINEBR
+        if tag == 'pre':
+            self.output += "```{}".format(LINEBR)
 
     def handle_data(self, data):
         """
