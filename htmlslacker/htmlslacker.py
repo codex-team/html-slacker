@@ -10,6 +10,8 @@ LINEBR = "::LINEBR::"
 
 class HTMLSlacker(HTMLParser):
 
+    ol_counter_cache = None
+
     """
     >>> from htmlslacker import HTMLSlacker
     >>> HTMLSlacker('<b>Hello</b>, <i>Slack</i>!').get_output()
@@ -55,6 +57,13 @@ class HTMLSlacker(HTMLParser):
                     self.output += attr[1] + '|'
         if tag == 'style' or tag == 'script':
             self.skip = True
+        if tag == 'ol':
+            self.ol_counter_cache = 1
+        if tag == 'li':
+            if self.ol_counter_cache is not None:
+                self.output += "%s." % self.ol_counter_cache
+            else:
+                self.output += '-'
 
     def handle_endtag(self, tag):
         """
@@ -72,6 +81,8 @@ class HTMLSlacker(HTMLParser):
             self.output += '`'
         if tag == 'style' or tag == 'script':
             self.skip = False
+        if tag == 'ol':
+            self.ol_counter_cache = None
 
     def handle_data(self, data):
         """
