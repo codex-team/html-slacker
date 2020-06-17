@@ -35,3 +35,15 @@ def test_link_with_target():
     expected = "Please click <http://xxx.com/t.html|here>"
     output = HTMLSlacker(html).get_output()
     assert(output == expected)
+
+def test_unordered_list():
+    html = 'Here is my cool list <ul><li>The Shining></li><li>Memento</li><li>Blade Runner</li></ul>'
+    expected = 'Here is my cool list • The Shining\n• Memento\n• Blade Runner'
+    output = HTMLSlacker(html).get_output()
+    assert(output == expected)
+
+def test_unordered_list_with_text_modifications():
+    html = 'Here is my cool list <ul><li>The Shining></li><li>Memento</li><li>Blade <b>Runner</b></li></ul>'
+    expected = 'Here is my cool list • The Shining\n• Me_me_nto\n• Blade *Runner*'
+    output = HTMLSlacker(html).get_output()
+    assert(output == expected)

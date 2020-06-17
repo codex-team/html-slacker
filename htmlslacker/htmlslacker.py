@@ -23,6 +23,7 @@ class HTMLSlacker(HTMLParser):
         except TypeError:
             HTMLParser.__init__(self, *args, **kwargs)
         self.skip = False
+        self.isProcessingList = False
 
         # slackified string
         self.output = ''
@@ -55,6 +56,10 @@ class HTMLSlacker(HTMLParser):
                     self.output += attr[1] + '|'
         if tag == 'style' or tag == 'script':
             self.skip = True
+        if tag == 'ul':
+            self.isProcessingList = True
+        if tag == 'li' and self.isProcessingList:
+            self.output += '• '
 
     def handle_endtag(self, tag):
         """
@@ -72,6 +77,10 @@ class HTMLSlacker(HTMLParser):
             self.output += '`'
         if tag == 'style' or tag == 'script':
             self.skip = False
+        if tag == 'ul':
+            self.isProcessingList = False
+        if tag == 'li' and self.isProcessingList:
+            self.output +='\n'
 
     def handle_data(self, data):
         """
