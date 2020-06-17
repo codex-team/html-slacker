@@ -80,7 +80,7 @@ class HTMLSlacker(HTMLParser):
         if tag == 'ul':
             self.isProcessingList = False
         if tag == 'li' and self.isProcessingList:
-            self.output +='\n'
+            self.output += LINEBR
 
     def handle_data(self, data):
         """
