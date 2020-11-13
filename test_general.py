@@ -35,3 +35,17 @@ def test_link_with_target():
     expected = "Please click <http://xxx.com/t.html|here>"
     output = HTMLSlacker(html).get_output()
     assert(output == expected)
+
+
+def test_headers_rendered():
+    html = '''<h2>Hello</h2> <h7>new</h7> <h2><b>world</b></h2>'''
+    expected = "*Hello* <h7>new</h7> *world*"
+    output = HTMLSlacker(html).get_output()
+    assert(output == expected)
+
+
+def test_task_list_rendered():
+    html = '''[] Grocery\n[x] Laundary'''
+    expected = "☐ Grocery\n☑︎ Laundary"
+    output = HTMLSlacker(html).get_output()
+    assert(output == expected)

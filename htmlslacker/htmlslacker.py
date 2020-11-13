@@ -4,6 +4,7 @@ try:
 except ImportError:
     from HTMLParser import HTMLParser
     from htmlentitydefs import name2codepoint
+import re
 
 LINEBR = "::LINEBR::"
 
@@ -44,6 +45,8 @@ class HTMLSlacker(HTMLParser):
             self.output += LINEBR
         if tag == 'b' or tag == 'strong':
             self.output += '*'
+        if re.match("h[1-6]{1}", tag):
+            self.output += '*'
         if tag == 'i' or tag == 'em':
             self.output += '_'
         if tag == 'code':
@@ -63,6 +66,8 @@ class HTMLSlacker(HTMLParser):
         :return:
         """
         if tag == 'b' or tag == 'strong':
+            self.output += '*'
+        if re.match("h[1-6]{1}", tag):
             self.output += '*'
         if tag == 'i' or tag == 'em':
             self.output += '_'
@@ -105,4 +110,7 @@ class HTMLSlacker(HTMLParser):
         link: https://stackoverflow.com/questions/2077897/substitute-multiple-whitespace-with-single-whitespace-in-python
         :return:
         """
-        return ' '.join(self.output.split()).replace(LINEBR, "\n")
+        output = ' '.join(self.output.split())
+        output = re.sub(r'\*+', '\*', output)
+        output = output.replace('[ ] ', '☐ ').replace('[x] ', '☑︎ ')
+        return output.replace(LINEBR, "\n")
